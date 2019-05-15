@@ -1,0 +1,13 @@
+{
+    "my-preset": {
+        "require": {
+            
+        },
+        "require-dev": {
+    
+        },
+        "repository": {
+    
+        }
+    }
+}

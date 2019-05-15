@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Laravel\\Installer\\Console\\": "src/"
+            "Blacklab\\LaravelUp\\Console\\": "src/"
         }
     },
     "require": {
@@ -23,5 +23,8 @@
     },
     "bin": [
         "laravel"
-    ]
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^4.2"
+    }
 }

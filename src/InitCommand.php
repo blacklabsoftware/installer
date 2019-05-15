@@ -1,10 +1,11 @@
 <?php
 
-namespace Blacklab\LaravelUl\Console;
+namespace Blacklab\LaravelUp\Console;
 
 use ZipArchive;
 use RuntimeException;
 use GuzzleHttp\Client;
+use Blacklab\LaravelUp\Console\Utils;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
@@ -38,6 +39,12 @@ class InitCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
+        $path = Utils::getStandardPath();
+        if (!Utils::doesPresetFileExist()) {
+            Utils::createPresetFile();
+            $output->writeln('<info>Created preset file at '.$path.')');
+        } else {
+            $output->writeln('<error>Preset file '.$path.' already exists</error>');
+        }
     }
 }

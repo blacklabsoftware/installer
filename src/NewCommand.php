@@ -1,10 +1,11 @@
 <?php
 
-namespace Laravel\Installer\Console;
+namespace Blacklab\LaravelUp\Console;
 
 use ZipArchive;
 use RuntimeException;
 use GuzzleHttp\Client;
+use Blacklab\LaravelUp\Console\Utils;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
@@ -49,7 +50,6 @@ class NewCommand extends Command
         $presets_path = getenv('HOME').DIRECTORY_SEPARATOR."laravel-installer.json";
         
         if (file_exists($presets_path)) {
-            
             $output->writeln('<info>Presets file found</info>');
             
             // Check that it can be parsed.
@@ -68,7 +68,6 @@ class NewCommand extends Command
                     throw new RuntimeException("Unknown preset '$preset'.");
                 }
             }
-
         }
 
         $directory = ($input->getArgument('name')) ? getcwd().'/'.$input->getArgument('name') : getcwd();
@@ -88,7 +87,6 @@ class NewCommand extends Command
 
         // Before running the commands, move our chosen preset into the list.
         if ($input->getOption('preset') && isset($presetData)) {
-
             $output->writeln("<info>Adding presets from '$preset' preset.</info>");
 
             $projectComposerPath = $directory.DIRECTORY_SEPARATOR.'composer.json';
@@ -112,7 +110,6 @@ class NewCommand extends Command
             fclose($file);
 
             $this->cleanup($directory.DIRECTORY_SEPARATOR.'composer.lock');
-
         }
 
         $commands = [
@@ -147,11 +144,6 @@ class NewCommand extends Command
         $output->writeln('<comment>Application ready! Build something amazing.</comment>');
     }
 
-
-    public function doesPresetFileExist()
-    {
-
-    }
 
     /**
      * Verify that the application does not already exist.
